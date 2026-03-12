@@ -4,9 +4,9 @@
   "type": "module",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "ts-node-dev src/server.ts"
-  },
+ "scripts": {
+  "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+},
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1"
