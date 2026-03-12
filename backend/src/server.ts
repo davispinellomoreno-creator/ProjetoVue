@@ -1,7 +1,9 @@
 import express from "express"
 
 const app = express()
+
 app.use(express.json())
+
 app.get("/cursos", (req, res) => {
   const cursos = [
     { id: 1, nome: "JavaScript Básico" },
@@ -10,4 +12,8 @@ app.get("/cursos", (req, res) => {
   ]
 
   res.json(cursos)
+})
+
+app.listen(3000, () => {
+  console.log("Servidor rodando na porta 3000")
 })
