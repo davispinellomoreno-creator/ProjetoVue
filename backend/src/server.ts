@@ -1,18 +1,16 @@
 import express from "express"
+import cors from "cors"
+
+import cursosRoutes from "./routes/curso.js"
+import matriculaRoutes from "./routes/matricula.js"
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
-app.get("/cursos", (req, res) => {
-  const cursos = [
-    { id: 1, nome: "JavaScript Básico" },
-    { id: 2, nome: "Node.js Fundamental" },
-    { id: 3, nome: "Vue.js Iniciante" }
-  ]
-
-  res.json(cursos)
-})
+app.use(cursosRoutes)
+app.use(matriculaRoutes)
 
 app.listen(3000, () => {
   console.log("Servidor rodando na porta 3000")
