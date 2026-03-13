@@ -16,12 +16,18 @@
 
       <div class="campo">
         <label>Curso</label>
-        <select v-model="curso">
-          <option value="">Selecione um curso</option>
-          <option v-for="cursoItem in cursos" :key="cursoItem.id" :value="cursoItem.nome">
-            {{ cursoItem.nome }}
-          </option>
-        </select>
+      <select v-model="curso">
+  <option value="">Selecione um curso</option>
+
+  <option
+    v-for="cursoItem in cursos"
+    :key="cursoItem.id"
+    :value="cursoItem.id"
+  >
+    {{ cursoItem.nome }}
+  </option>
+
+</select>
       </div>
 
       <button type="submit">Matricular</button>
@@ -34,40 +40,56 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 
 const nome = ref("")
 const email = ref("")
 const curso = ref("")
 const mensagem = ref("")
 
-const cursos = ref([
-  { id: 1, nome: "JavaScript Básico" },
-  { id: 2, nome: "Node.js Fundamental" },
-  { id: 3, nome: "Vue.js Iniciante" }
-])
+const cursos = ref([])
 
-function enviarFormulario() {
+// carregar cursos da API
+async function carregarCursos() {
+  const resposta = await fetch("http://localhost:3000/cursos")
+  cursos.value = await resposta.json()
+}
+
+async function enviarFormulario() {
+
   if (!nome.value || !email.value || !curso.value) {
     mensagem.value = "Preencha todos os campos."
     return
   }
 
-  mensagem.value = "Matrícula realizada com sucesso!"
+  try {
+
+    const resposta = await fetch("http://localhost:3000/matricula", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        nome: nome.value,
+        email: email.value,
+        cursoId: curso.value
+      })
+    })
+
+    const dados = await resposta.json()
+
+    mensagem.value = dados.mensagem
+
+  } catch (erro) {
+
+    mensagem.value = "Erro ao enviar matrícula"
+
+  }
+
 }
+
+// executa quando a página carrega
+onMounted(() => {
+  carregarCursos()
+})
 </script>
-
-<style>
-.form-container {
-  max-width: 400px;
-  margin: auto;
-}
-
-.campo {
-  margin-bottom: 15px;
-}
-
-button {
-  padding: 10px;
-}
-</style>
