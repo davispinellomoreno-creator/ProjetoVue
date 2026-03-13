@@ -1,12 +1,9 @@
-// routes/matricula.ts
 import { Router, Request, Response } from "express";
 
 const router = Router();
 
-// Array tipado para armazenar matrículas
 const matriculas: { nome: string; email: string; cursoId: number }[] = [];
 
-// POST de matrícula
 router.post("/matricula", (req: Request, res: Response) => {
   const { nome, email, cursoId } = req.body;
 
@@ -23,10 +20,8 @@ router.post("/matricula", (req: Request, res: Response) => {
   });
 });
 
-// GET de todas as matrículas
 router.get("/matriculas", (req: Request, res: Response) => {
   res.json(matriculas);
 });
 
-// Export default para ES Modules
 export default router;
