@@ -4,6 +4,8 @@ const router = Router()
 
 router.post("/matricula", (req, res) => {
 
+  console.log("Dados recebidos:", req.body)
+
   const { nome, email, cursoId } = req.body
 
   if (!nome || !email || !cursoId) {
