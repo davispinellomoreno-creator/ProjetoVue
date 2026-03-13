@@ -1,7 +1,8 @@
-const express = require("express");
-const cors = require("cors");
-const cursoRouter = require("./routes/curso");
-const matriculaRouter = require("./routes/matricula");
+import express from "express";
+import cors from "cors";
+
+import cursoRouter from "./routes/curso.js";
+import matriculaRouter from "./routes/matricula.js";
 
 const app = express();
 const port = 3000;
@@ -16,5 +17,5 @@ app.use(matriculaRouter);
 
 // Inicia o servidor
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:3000`);
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });

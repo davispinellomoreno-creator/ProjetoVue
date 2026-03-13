@@ -1,16 +1,14 @@
-const { Router } = require("express");
-
-import type { Request, Response } from "express";
+// routes/matricula.ts
+import { Router, Request, Response } from "express";
 
 const router = Router();
 
+// Array tipado para armazenar matrículas
 const matriculas: { nome: string; email: string; cursoId: number }[] = [];
 
-
+// POST de matrícula
 router.post("/matricula", (req: Request, res: Response) => {
   const { nome, email, cursoId } = req.body;
-
-  console.log("Dados recebidos:", req.body);
 
   if (!nome || !email || !cursoId) {
     return res.status(400).json({ erro: "Todos os campos são obrigatórios" });
@@ -25,9 +23,10 @@ router.post("/matricula", (req: Request, res: Response) => {
   });
 });
 
-
+// GET de todas as matrículas
 router.get("/matriculas", (req: Request, res: Response) => {
-  res.json(matriculas); // array correto
+  res.json(matriculas);
 });
 
-module.exports = router;
+// Export default para ES Modules
+export default router;
