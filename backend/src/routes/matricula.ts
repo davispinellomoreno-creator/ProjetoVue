@@ -2,6 +2,9 @@ import { Router } from "express"
 
 const router = Router()
 
+const matriculas: any[] = []
+
+
 router.post("/matricula", (req, res) => {
 
   console.log("Dados recebidos:", req.body)
@@ -14,10 +17,19 @@ router.post("/matricula", (req, res) => {
     })
   }
 
+  const novaMatricula = { nome, email, cursoId }
+
+  matriculas.push(novaMatricula)
+
   res.status(201).json({
     mensagem: "Matrícula realizada com sucesso"
   })
+})
 
+
+
+router.get("/matriculas", (req, res) => {
+  res.json(matriculas)
 })
 
 export default router
