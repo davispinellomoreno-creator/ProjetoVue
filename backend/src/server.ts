@@ -1,17 +1,20 @@
-import express from "express"
-import cors from "cors"
+const express = require("express");
+const cors = require("cors");
+const cursoRouter = require("./routes/curso");
+const matriculaRouter = require("./routes/matricula");
 
-import cursosRoutes from "./routes/curso.js"
-import matriculaRoutes from "./routes/matricula.js"
+const app = express();
+const port = 3000;
 
-const app = express()
+// Middlewares
+app.use(cors());
+app.use(express.json());
 
-app.use(cors())
-app.use(express.json())
+// Rotas
+app.use(cursoRouter);
+app.use(matriculaRouter);
 
-app.use(cursosRoutes)
-app.use(matriculaRoutes)
-
-app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000")
-})
+// Inicia o servidor
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:3000`);
+});

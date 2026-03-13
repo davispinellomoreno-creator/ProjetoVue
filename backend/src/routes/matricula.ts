@@ -1,35 +1,33 @@
-import { Router } from "express"
+const { Router } = require("express");
 
-const router = Router()
+import type { Request, Response } from "express";
 
-const matriculas: any[] = []
+const router = Router();
+
+const matriculas: { nome: string; email: string; cursoId: number }[] = [];
 
 
-router.post("/matricula", (req, res) => {
+router.post("/matricula", (req: Request, res: Response) => {
+  const { nome, email, cursoId } = req.body;
 
-  console.log("Dados recebidos:", req.body)
-
-  const { nome, email, cursoId } = req.body
+  console.log("Dados recebidos:", req.body);
 
   if (!nome || !email || !cursoId) {
-    return res.status(400).json({
-      erro: "Todos os campos são obrigatórios"
-    })
+    return res.status(400).json({ erro: "Todos os campos são obrigatórios" });
   }
 
-  const novaMatricula = { nome, email, cursoId }
+  const novaMatricula = { nome, email, cursoId };
+  matriculas.push(novaMatricula);
 
-  matriculas.push(novaMatricula)
-
-  res.status(201).json({
-    mensagem: "Matrícula realizada com sucesso"
-  })
-})
-
+  return res.status(201).json({
+    mensagem: "Matrícula realizada com sucesso",
+    matricula: novaMatricula
+  });
+});
 
 
-router.get("/matriculas", (req, res) => {
-  res.json(matriculas)
-})
+router.get("/matriculas", (req: Request, res: Response) => {
+  res.json(matriculas); // array correto
+});
 
-export default router
+module.exports = router;

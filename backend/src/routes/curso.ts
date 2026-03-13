@@ -1,17 +1,15 @@
-import { Router } from "express"
+import { Router, Request, Response } from "express";
 
-const router = Router()
+const router = Router();
 
-router.get("/cursos", (req, res) => {
+const cursos = [
+  { id: 1, nome: "JavaScript Básico" },
+  { id: 2, nome: "Node.js Fundamental" },
+  { id: 3, nome: "Vue.js Iniciante" }
+];
 
-  const cursos = [
-    { id: 1, nome: "JavaScript Básico" },
-    { id: 2, nome: "Node.js Fundamental" },
-    { id: 3, nome: "Vue.js Iniciante" }
-  ]
+router.get("/cursos", (req: Request, res: Response) => {
+  res.json(cursos);
+});
 
-  res.json(cursos)
-
-})
-
-export default router
+export default router;
