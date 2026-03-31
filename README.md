@@ -1,42 +1,170 @@
-# vue-project
+# 📚 Sistema de Matrícula de Cursos
 
-This template should help get you started developing with Vue 3 in Vite.
+Este projeto é uma aplicação web simples que permite realizar matrículas em cursos online. O usuário pode selecionar um curso, preencher seus dados e enviar a matrícula, que é processada por uma API backend.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 Tecnologias utilizadas
 
-## Recommended Browser Setup
+### Frontend
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+* Vue.js
+* Vite
+* TypeScript
 
-## Type Support for `.vue` Imports in TS
+### Backend
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+* Node.js
+* Express.js
+* TypeScript
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 📂 Estrutura do projeto
 
-## Project Setup
+```
+vue-project
+│
+├── backend
+│   ├── src
+│   │   ├── routes
+│   │   │   ├── cursos.ts
+│   │   │   └── matricula.ts
+│   │   └── server.ts
+│   └── package.json
+│
+├── src
+│   ├── components
+│   │   └── FormularioMatricula.vue
+│   └── App.vue
+│
+└── package.json
+```
 
-```sh
+---
+
+## ⚙️ Funcionalidades
+
+* Listar cursos disponíveis
+* Realizar matrícula
+* Validação de campos obrigatórios
+* Comunicação entre frontend e backend via API
+* Exibição de mensagem de sucesso ou erro
+
+---
+
+## 🔌 Rotas da API
+
+### 📥 Listar cursos
+
+```
+GET /cursos
+```
+
+### 📝 Criar matrícula
+
+```
+POST /matricula
+```
+
+### 📄 Listar matrículas
+
+```
+GET /matriculas
+```
+
+---
+
+## ▶️ Como executar o projeto
+
+### 1️⃣ Clonar o repositório
+
+```
+git clone https://github.com/seu-usuario/vue-project.git
+```
+
+---
+
+### 2️⃣ Instalar dependências
+
+#### Frontend
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+#### Backend
 
-```sh
+```
+cd backend
+npm install
+```
+
+---
+
+### 3️⃣ Rodar o backend
+
+```
+cd backend
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Servidor disponível em:
 
-```sh
-npm run build
 ```
+http://localhost:3000
+```
+
+---
+
+### 4️⃣ Rodar o frontend
+
+```
+npm run dev
+```
+
+Aplicação disponível em:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🧪 Exemplo de uso
+
+1. Acesse a aplicação no navegador
+2. Preencha o formulário de matrícula
+3. Envie os dados
+4. O backend processa a requisição
+5. Uma mensagem de sucesso será exibida
+
+---
+
+## 📌 Observações
+
+* A pasta `node_modules` não está incluída no projeto
+* Para instalar as dependências, utilize `npm install`
+* O projeto utiliza TypeScript tanto no frontend quanto no backend
+
+---
+
+## 📚 Aprendizados
+
+Este projeto demonstra:
+
+* Integração entre frontend e backend
+* Criação de APIs com Express
+* Uso de Vue.js para interfaces reativas
+* Envio de requisições HTTP com `fetch`
+* Estrutura básica de um projeto fullstack
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por Davi Rafá Spinello Moreno 🚀
+
+---
+
+
